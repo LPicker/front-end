@@ -27,15 +27,30 @@
 	 		ran = Math.floor(Math.random()*len);
 	 		char = sens[i][ran];
 	 		chars.push(char);
-	 		sens[i] = sens[i].replace(char, '____')
+	 		sens[i] = sens[i].replace(char, '____');
 	 	};
-	 	document.writeln(sens.join("<br>"));
-	 	document.write("<p>请输入您的选项：</p>")
-	 	var options = ["A", "B", "C", "D"];
-	 	for (var j = 0; j < chars.length; j++) {
-	 		ran = Math.floor(Math.random()*char.length);
-		 	document.writeln(options[j]+"："+chars[ran]);
+	 	show(sens.join("<br>"));
+	 	show("<p>请输入您的选项：</p>")
+	 	var bullets = ["A", "B", "C", "D"];
+	 	var options = chars;	// 存放选项
+	 	var arrtemp = [];
+	 	for (var i = 0; i < bullets.length; i++) {
+	 		options = chars, arrtemp = [];
+	 		// 随机分配选项
+		 	for (var j = 0; j < options.length; j++) {
+		 		ran = Math.floor(Math.random()*options.length);
+		 		arrtemp.push(options[ran]);
+		 		options.splice(ran, 1);
+		 		console.log(options+"\t"+arrtemp);
+		 	};
+		 	show(bullets[i]+"："+arrtemp.join(" "));
 	 	};
+
+	 	function show (content) {
+	 		var p = document.createElement("p");
+	 		p.innerHTML = content;
+	 		document.body.appendChild(p);
+	 	}
 	</script>
 </body>
 </html>
