@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>唐诗测试游戏</title>
+</head>
+
+<body>
+	<!-- 
+	完成唐诗测试游戏：准备一首五言诗，如“白日依山尽 黄河入海流 欲穷千里目 更上一层楼”，每句随机去掉一个字，用__代替，然后将去掉的字组合为4种选项，让用户选择，判断用户选择的选项顺序是否正确。以下是程序输出的例子：
+	唐诗测试游戏：
+	白日__山尽 __河入海流 欲穷千__目 更上__层楼
+	A. 依 黄 里 一 B. 一 里 黄 依
+	C. 一 里 依 黄 D. 里 黄 一 依
+	请输入您的选项： B （B为用户输入）
+	您的选项不正确，请重新输入
+	请输入您的选项： A （A为用户输入）
+	恭喜您答对了！
+	 -->
+	<script src="../../js-libs/global.js"></script>
+	<script>
+	 	var p = "白日依山尽\n黄河入海流\n欲穷千里目\n更上一层楼";
+	 	var sens = p.split("\n");
+	 	var chars = [];		// 存放需要填写的字
+	 	var i = 0, len = sens.length, ran;
+	 	for (i; i < len; i++) {
+	 		ran = Math.floor(Math.random()*len);
+	 		char = sens[i][ran];
+	 		chars.push(char);
+	 		sens[i] = sens[i].replace(char, '____')
+	 	};
+	 	document.writeln(sens.join("<br>"));
+	 	document.write("<p>请输入您的选项：</p>")
+	 	var options = ["A", "B", "C", "D"];
+	 	for (var j = 0; j < chars.length; j++) {
+	 		ran = Math.floor(Math.random()*char.length);
+		 	document.writeln(options[j]+"："+chars[ran]);
+	 	};
+	</script>
+</body>
+</html>
