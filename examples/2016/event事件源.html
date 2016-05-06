@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>event 事件源</title>
+<link rel="stylesheet" href="../../css-libs/common.css">
+<style>
+    .btn-wrapper {margin:6% auto;}
+</style>
+</head>
+
+<body>
+    <div class="btn-wrapper tc" id="box">
+        <button type="button">1</button>
+        <button type="button">2</button>
+        <button type="button">3</button>
+    </div>
+<script src="../../js-libs/global.js"></script>
+<script>
+    var box = $("box");
+    var btns = box.getElementsByTagName("button");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].onclick = function(e){
+            var e = e || window.event;
+            // srcElement (IE, chrome)
+            var src = (function (){
+                if(e.srcElement){
+                    return e.srcElement;
+                }
+            })();
+            if(src){
+                console.log("srcElement："+src.innerHTML);
+            }
+            // target (firefox, IE8+, chrome)
+            var tar = (function (){
+                if(e.target){
+                    return e.target;
+                }
+            })();
+            if(tar){
+                console.log("target："+tar.innerHTML);
+            }
+        }
+    };
+</script>
+</body>
+</html>

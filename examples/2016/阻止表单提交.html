@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>阻止表单提交</title>
+<link rel="stylesheet" href="../../css-libs/common.css">
+<style>
+    .sf {margin:6% auto;}
+</style>
+</head>
+
+<body>
+<form action="ssjg.php" name="sForm">
+    <div class="sf tc">
+        <label for="">请输入关键字</label>
+        <input type="text" name="kw">
+        <button type="submit" id="btnS">搜索</button>
+    </div>
+</form>
+<script src="../../js-libs/global.js"></script>
+<script>
+    var sForm = document.getElementsByName('sForm')[0];
+    var btnS = $("btnS");
+    // 这种方式兼容性良好
+    btnS.onclick = (function(){
+        return function(){
+            var input = document.getElementsByName("kw")[0];
+            if (input.value == ""){
+                alert("请输入关键字后再点搜索按钮哦！");
+                input.focus();
+                return false;   
+            }
+            return true;    // 可以不写
+        }
+    })();
+</script>
+</body>
+</html>
