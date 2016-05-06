@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>title 跑马灯</title>
+</head>
+
+<body>
+<script>
+    var counter = 8;
+    function fn(){
+        if (counter%8==0) {
+            document.title = "title ";
+        }else if (counter%8==1) {
+            document.title = "tle 跑";
+        }else if (counter%8==2) {
+            document.title = " 跑马";
+        }else if (counter%8==3) {
+            document.title = "跑马灯";
+        }else if (counter%8==4) {
+            document.title = "马灯 ";
+        }else if (counter%8==5) {
+            document.title = "灯 tit";
+        }else if (counter%8==6) {
+            document.title = " title";
+        }else if (counter%8==7) {
+            document.title = "title ";
+        }
+        counter++;
+    }
+
+    setInterval(fn, 200);
+</script>
+</body>
+</html>
