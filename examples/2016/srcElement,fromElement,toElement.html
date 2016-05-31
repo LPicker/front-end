@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>srcElement,fromElement,toElement</title>
+<style>
+	.div1{height: 260px;margin: 8% 12%;background-color: #663366;color: #fff;font-size: 18px}
+</style>
+</head>
+
+<body>
+	<h1>srcElement,fromElement,toElement的具体含义是什么（IE有效）</h1>
+	<div class="div1" onclick="alert(event.srcElement.tagName)" onmouseover="alert('From:'+event.fromElement.tagName+'\r\nTo:'+event.toElement.tagName)" onmouseout="alert('From:'+event.fromElement.tagName+'\r\nTo:'+event.toElement.tagName)">
+		我是里面的文本
+	</div>
+</body>
+</html>
