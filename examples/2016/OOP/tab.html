@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>面向对象的选项卡</title>
+<style>
+    .wrap{margin: 6% 12%;}
+    .btn-wrap{overflow: hidden;}
+    .btn-wrap li{float: left;list-style: none}
+    .btn-wrap li button{padding: 8px 38px;}
+    .content-wrap{overflow: hidden;}
+    .content-wrap li{list-style: none;display: none;}
+    .content-wrap .active{display: list-item;}
+    .content-wrap .content{font: 20px/5.68 Arial;font-weight: bold;background-color: #eee;}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+    <ul class="btn-wrap">
+        <li><button type="button">1</button></li>
+        <li><button type="button">2</button></li>
+        <li><button type="button">3</button></li>
+    </ul>
+    <ul class="content-wrap">
+        <li>
+            <div class="content">111</div>
+        </li>
+        <li>
+            <div class="content">222</div>
+        </li>
+        <li>
+            <div class="content">333</div>
+        </li>
+    </ul>
+</div>
+<script>
+    window.onload = function(){
+        var ele_li = document.querySelector(".content-wrap li");
+        ele_li.className += "active";
+        var x = new Tab(".btn-wrap button", ".content-wrap li");
+    }
+    function Tab (btns, tab_lis){
+        this.btns = document.querySelectorAll(btns);
+        this.tab_lis = document.querySelectorAll(tab_lis);
+        for (var j = 0, length = this.btns.length; j < length; j++) {
+            var _this = this;
+            this.btns[j].index = j;
+            this.btns[j].onclick = function(){
+                _this.show(this.index, _this.tab_lis);
+            };
+        };
+    }
+    Tab.prototype.show = function (index, tab_lis){
+        for (var n = 0; n < tab_lis.length; n++) {
+            tab_lis[n].classList.remove("active");
+        };
+        tab_lis[index].className += "active";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>js异或加密解密代码</title>
+</head>
+
+<body>
+<script>
+    function MyDecode(str) { 
+        var i,k,str2=""; 
+
+        k=str.split("."); 
+
+        for(i=0;i<k.length;i++) { 
+            str2+=String.fromCharCode(k[i]^0x12); 
+        } 
+        return str2; 
+    } 
+    myrand="46.97.115"; 
+
+
+    WScript.echo(MyDecode(myrand)); 
+
+
+    function Encrypt(str) { 
+        var monyer = new Array(); 
+        var i, s, str; 
+
+        for (i = 0; i < str.length; i++) { 
+            monyer += str.charCodeAt(i)^0x12 
+            monyer+="."; 
+        } 
+
+        return monyer; 
+    } 
+
+
+    WScript.Echo(Encrypt("<script>alert('ok')</script>").replace(/.$/,"")); 
+
+</script>
+</body>
+</html>
