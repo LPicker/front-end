@@ -21,20 +21,20 @@
     var btns = box.getElementsByTagName("button");
     for (var i = 0; i < btns.length; i++) {
         btns[i].onclick = function(e){
-            var e = e || window.event;
+            var evt = e || window.event;
             // srcElement (IE, chrome)
             var src = (function (){
-                if(e.srcElement){
-                    return e.srcElement;
+                if(evt.srcElement){
+                    return evt.srcElement;
                 }
-            })();
+            }());
             if(src){
                 console.log("srcElement："+src.innerHTML);
             }
             // target (firefox, IE8+, chrome)
             var tar = (function (){
-                if(e.target){
-                    return e.target;
+                if(evt.target){
+                    return evt.target;
                 }
             })();
             if(tar){

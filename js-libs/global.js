@@ -7,7 +7,7 @@ function addLoadEvent(func){
         window.onload = function(){
             oldonload();
             func();
-        }
+        };   
     }
 }
 
@@ -39,7 +39,6 @@ function getById(id){
 function getByClass(obj, sClass){
     var aTargs = [];
     var aEle = obj.getElementsByTagName("*");
-
     for(var i=0;i<aEle.length;i++){
         if(aEle[i].className==sClass){
             aTargs.push(aEle[i]);
@@ -64,5 +63,5 @@ function css(obj,name,value){
 
 //$ 函数
 function $(id){
-	return document.getElementById(id);
+    return document.getElementById(id);
 }
