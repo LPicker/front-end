@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>::marker</title>
+  <style>
+
+  li::marker {        /* 当前浏览器不支持 */
+    content: "(" counter(counter) ")";
+    width: 6em;
+    text-align: center;
+  }
+  li {
+    display: list-item;
+    counter-increment: counter;
+  }
+
+
+  input:-moz-read-only { background: #eee; }
+  input:-ms-read-only { background: #eee; }
+  input:read-only { background: #eee; }
+  </style>
+</head>
+<body>
+
+  <ol>
+    <li>This is the first item.</li>
+    <li>This is the second item.</li>
+    <li>This is the third item.</li>
+  </ol>
+
+  should render something like this:
+
+  (1)    This is the
+  first item.
+  (2)    This is the
+  second item.
+  (3)    This is the
+  third item.
+
+
+
+  <input type="text" readonly placeholder="hello">
+
+</body>
+</html>
