@@ -11,6 +11,17 @@ function addLoadEvent(func){
     }
 }
 
+// 兼容的事件绑定函数
+function addEvent(event, ele, fn){
+    if(document.addEventListener){
+        ele.addEventListener(event, fn);
+    }else if(document.attachEvent){
+        ele.attachEvent("on"+event, fn);
+    }else{
+        ele["on"+event] = fn;
+    }
+}
+
 // insertAfter 函数，与 insertBefore 方法对应
 function insertAfter(newElement,targetElement){
     var parent = targetElement.parentNode;
