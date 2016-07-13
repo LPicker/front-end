@@ -25,13 +25,13 @@
     btnS.onclick = (function(){
         return function(){
             var input = document.getElementsByName("kw")[0];
-            if (input.value == ""){
+            if (input.value === ""){
                 alert("请输入关键字后再点搜索按钮哦！");
                 input.focus();
                 return false;   
             }
             return true;    // 可以不写
-        }
+        };
     })();
 </script>
 </body>

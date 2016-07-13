@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>模板引擎demo</title>
+<link rel="stylesheet" href="../../css-libs/common.css">
+<style>
+    body{margin-top: 6%;}
+    .sf {margin:18px auto;}
+</style>
+</head>
+
+<body>
+<form action="ssjg.php" name="sForm">
+    <div class="sf tc">
+        <label for=""><%person.firstName%></label>
+        <input type="text" name="kw">
+        <button type="submit" id="btnS">搜索</button>
+    </div>
+    <div class="sf tc">
+        <label for=""><%person.name%></label>
+        <input type="text" name="kw">
+        <button type="submit" id="btnS">搜索</button>
+    </div>
+</form>
+<script src="../../js-libs/global.js"></script>
+<script src="../../js-libs/templateEngine.js"></script>
+<script>
+    var sForm = document.getElementsByName("sForm")[0];
+    // 需要替换实体字符
+    var code = sForm.innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    var person = {
+        name : "jianjie",
+        firstName : "Lian"
+    };
+    var html = templateEngine(code, person);
+    sForm.innerHTML = html;
+    console.log(html);
+</script>
+</body>
+</html>
