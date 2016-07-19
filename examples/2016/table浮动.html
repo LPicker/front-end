@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table 浮动</title>
+    <style>
+    table {
+        /*display: block;*/
+        margin: 6%;
+        border: 1px solid #aaa;
+        border-collapse: collapse;
+    }
+    
+    table tbody {}
+    
+    table tr {
+        /*float: left;
+        width: 100%;
+        display: block;*/
+    }
+    
+    table td {
+        float: left;
+        border: 1px solid #aaa;
+        padding: 6px 8px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    table tr td:first-child{width:20%;background-color: #eee;text-align: center;}
+    table tr td:nth-child(2){width:80%;}
+    table tr td.nth-child-2{width:80%;}
+    </style>
+</head>
+
+<body>
+    <table>
+        <tbody>
+            <tr>
+                <td>院系名称</td>
+                <td>
+                    陕西电子信息工程学院
+                </td>
+            </tr>
+            <tr>
+                <td>创建日期</td>
+                <td>
+                    2015-09-22
+                </td>
+            </tr>
+            <tr>
+                <td>院系网址</td>
+                <td>
+                    www.shanxigcxy.edu.cn
+                </td>
+            </tr>
+            <tr>
+                <td>上级主管</td>
+                <td>
+                    邵鹏飞
+                </td>
+            </tr>
+            <tr>
+                <td>通讯地址</td>
+                <td>
+                    陕西省西安市高新区高新路16号
+                </td>
+            </tr>
+            <tr>
+                <td>邮政编码</td>
+                <td>
+                    710000
+                </td>
+            </tr>
+            <tr>
+                <td>使用状态</td>
+                <td>
+                    <span class="label label-success1">启用</span>
+                    <span class="label label-danger1" style="display:none">禁用</span>
+                </td>
+            </tr>
+            <tr>
+                <td>院系简介</td>
+                <td>
+                    <p>
+                        陕西电子信息工程学院坐落于古都西安,具体位置在陕西省西安市高新区高新路16号 陕西电子信息工程学院坐落于古都西安,具体位置在陕西省西安市高新区高新路16号 陕西电子信息工程学院坐落于古都西安,具体位置在陕西省西安市高新区高新路16号 陕西电子信息工程学院坐落于古都西安,具体位置在陕西省西安市高新区高新路16号 陕西电子信息工程学院坐落于古都西安,具体位置在陕西省西安市高新区高新路16号陕西电子信息工程学院坐落于古都西安,具体位置在陕西省西安市高新区高新路16号 陕西电子信息工程学院坐落于古都西安,具体位置在陕西省西安市高新区高新路16号 陕西电子信息工程学院坐落于古都西安,具体位置在陕西省西安市高新区高新路16号 陕西电子信息工程学院坐落于古都西安,具体位置在陕西省西安市高新区高新路16号 陕西电子信息工程学院坐落于古都西安,具体位置在陕西省西安市高新区高新路16号
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <button class="btn-2" style="margin-left:180px;">返回
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script src="../../js-libs/jquery-1.8.3.min.js"></script>
+    <script>
+      $("tr td:nth-child(2)").addClass("nth-child-2");
+    </script>
+</body>
+
+</html>

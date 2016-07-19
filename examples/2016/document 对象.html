@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>document 对象相关属性/方法</title>
+<link rel="stylesheet" href="../../css-libs/common.css">
+<style>
+    body{overflow-x:hidden;font-family:Arial,"Microsoft YaHei";}
+    #header{-webkit-animation: slideLdelay 1s;animation: slideLdelay 1s;}
+    #div1{margin:4% 10% 0;font-size:18px;-webkit-animation:slideL .8s;animation:slideL .8s;}
+    #div1 .name-value-pair{width:100%;padding-left:0}
+    #div1 li{width:50%;max-width:50%;line-height:1.8;border-left:1px solid #ccc;box-sizing:border-box;transition:background-color .3s,color .5s;}
+    #div1 li:hover{background-color:#ccc;color:#f60}
+    #div1 .name,#div1 .value{width:50%;max-width:50%;text-overflow:ellipsis;overflow:hidden;box-sizing:border-box}
+    #div1 .name:hover,#div1 .value:hover{text-overflow:clip;overflow:visible;}
+    #div1 .name{padding-right:6px;}
+</style>
+</head>
+
+<body>
+<h1 class="tc relative" id="header">document 对象</h1>
+<div id="div1" class="relative"><p id="p1"></p></div>
+<script src="../../js-libs/global.js"></script>
+<script>
+window.onload = function(){
+    console.log("document type："+document.nodeType+"\ndocumentElement type："+document.documentElement.nodeType+"\nbody type："+document.body.nodeType);
+    var oDiv = getById("div1");
+    var oUl = document.createElement("ul");
+    var oP = getById("p1");
+    oUl.className += " name-value-pair";
+    var oFragment = document.createDocumentFragment();
+    var length = 0;
+    for(var name in document){
+        length++;
+        var oLi = document.createElement("li");
+        oLi.innerHTML = "<div class='name'>"+name+"：</div>"+"<div class='value'>"+document[name]+"</div>";
+        oFragment.appendChild(oLi);
+    }
+    oUl.appendChild(oFragment);
+    oDiv.appendChild(oUl);
+    oP.innerHTML = "document 对象共有 <b class='color-f00'>"+length+"</b> 个属性/方法";
+}
+</script>
+</body>
+</html>
