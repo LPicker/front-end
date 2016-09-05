@@ -1,30 +1,30 @@
 <!doctype html>
-<!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>apply、call</title>
-<link rel="stylesheet" href="../../css-libs/common.css">
+    <meta charset="utf-8">
+    <title>apply、call</title>
+    <link rel="stylesheet" href="../../css-libs/common.css">
 </head>
 
 <body>
-<script src="../../js-libs/global.js"></script>
-<script>
-    function Person(name, age){
+    <script src="../../js-libs/global.js"></script>
+    <script>
+    function Person(name, age) {
         this.name = name;
         this.age = age;
     }
 
-    function Student(name, age, grade){
+    function Student(name, age, grade) {
         // Person.apply(this, arguments);
         Person.call(this, name, age);
         this.grade = grade;
     }
 
-
     var stu1 = new Student("小明", 18, 8);
 
-    document.writeln(stu1.name+"今年"+stu1.age+"岁，上"+stu1.grade+"年级了！");
-</script>
+    document.writeln(stu1.name + "今年" + stu1.age + "岁，上" + stu1.grade + "年级了！");
+    </script>
 </body>
+
 </html>

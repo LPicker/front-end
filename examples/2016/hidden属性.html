@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>hidden属性</title>
+</head>
+
+<body>
+    <div id="target" hidden="true" style="height:80px">
+        文字内容
+    </div>
+    <button onclick="sh()">显示/隐藏</button>
+    <script>
+    function sh() {
+        var target = document.getElementById('target');
+        target.hidden = !target.hidden;
+    }
+    </script>
+</body>
+
+</html>

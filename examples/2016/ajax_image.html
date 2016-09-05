@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <title>Image Slide</title>
+    <script>
+    function makeAsyncRequest(url, callback) {
+        var httpRequest;
+
+        if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+
+            httpRequest = new XMLHttpRequest();
+            if (httpRequest.overrideMimeType) {
+                httpRequest.overrideMimeType('text/xml');
+            }
+        } else if (window.ActiveXObject) { // IE
+
+            try {
+                httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {}
+            }
+        }
+
+        httpRequest.onreadystatechange = function() {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200)
+                callback(url);
+        };
+
+        httpRequest.open('GET', url, true);
+        httpRequest.send('');
+    }
+
+    var i = 0;
+    var max_i = 10;
+
+    function displayImage() {
+        var url = "./" + i + ".jpg";
+        makeAsyncRequest(url, function(url) {
+            var div = document.getElementById("image");
+            var img = div.getElementsByTagName("img");
+            if (img.length === 0) {
+                img = document.createElement("img");
+                while (div.childNodes.length > 0)
+                    div.removeChild(div.childNodes[0]);
+                div.appendChild(img);
+            } else
+                img = img.item(0);
+            img.src = url;
+            if (i == max_i)
+                i = 0;
+            else
+                i++;
+            window.setTimeout(displayImage, 1000);
+        });
+    }
+    </script>
+</head>
+
+<body onload="displayImage();">
+    <div id="image">
+    </div>
+</body>
+
+</html>
