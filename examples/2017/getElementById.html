@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>getElementById引发的思考</title>
+</head>
+<body>
+	<div id="demo">我就是一个dome元素</div>
+	<script>
+		var getById = document.getElementById;
+		// console.log(getById("demo"));
+
+		// console.log(getById.call(window, "demo"));
+
+		console.dir(getById.call(document, "demo"));
+	</script>
+</body>
+</html>

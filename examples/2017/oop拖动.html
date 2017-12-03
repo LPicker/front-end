@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>拖动事件</title>
+<style>
+    html,body{height: 100%;margin: 0}
+    .div{position:absolute;width:300px;height:260px;border:1px solid #999;border-radius:8px;color:#fff;font:1.68em/1.8 Arial,"Microsoft YaHei";overflow-x:hidden;-webkit-user-select:none;-moz-user-select:none;user-select:none;}
+    .div .title{background-color:#66F;text-align:center;cursor:default;cursor:move}
+    .div .content{padding: 6px 8px;font-size: .8em;}
+    #div1{background-color: #69F;}
+    #div2{background-color: #f96;left: 500px}
+</style>
+</head>
+
+<body>
+<div id="div1" class="div">
+    <div class="title">标题</div>
+    <div class="content">我是内容，我可以拖动！</div>
+</div>
+<div id="div2" class="div">
+    <div class="title">标题</div>
+    <div class="content">我是内容，我可以拖动！但限制在窗口内容范围内</div>
+</div>
+<script>
+    function Drag(id){
+        var _this = this;
+        this.ele = document.getElementById(id);
+        this.isPressed = false;
+        this.offsetPos = {x: 0, y: 0};   // 事件发生点相对于事件源的位置
+        this.endPos = {x: 0, y: 0};      // 最终位置
+        this.ele.onmousedown = function(ev){
+            _this.m_down(ev);
+            return false;
+        }
+    }
+    Drag.prototype.m_down = function (ev){
+        var _this = this;
+        this.oEvent = ev || window.event;
+        this.isPressed = true;
+        // 记录事件发生点相对于事件源的位置
+        this.offsetPos.x = this.oEvent.offsetX;
+        this.offsetPos.y = this.oEvent.offsetY;
+        document.onmousemove = function(ev){
+            _this.m_move(ev);
+        }
+        this.ele.onmouseup = function(ev){
+            _this.m_up(ev);
+        }
+    }
+    Drag.prototype.m_move = function (ev){
+        this.oEvent = ev || window.event;
+        if(!this.isPressed){
+            return false;
+        };
+        // 记录事件源的最终位置
+        this.endPos.x = this.oEvent.clientX;
+        this.endPos.y = this.oEvent.clientY;
+        // 设置元素的最终位置
+        this.ele.style.left = (this.endPos.x - this.offsetPos.x)+"px";
+        this.ele.style.top = (this.endPos.y - this.offsetPos.y)+"px";
+    }
+    Drag.prototype.m_up = function (){
+        this.isPressed = false;
+    }
+
+    // 限制范围的拖拽
+    function DragWall(id){
+        // this->new出来的d2
+        // 构造函数伪装，调用Drag的实现继承
+        Drag.call(this, id);
+    }
+    for(var key in Drag.prototype){
+        DragWall.prototype[key] = Drag.prototype[key];
+    }
+    DragWall.prototype.m_move = function (ev){
+        this.oEvent = ev || window.event;
+        if(!this.isPressed){
+            return false;
+        };
+        // 记录事件源的最终位置
+        this.endPos.x = this.oEvent.clientX;
+        this.endPos.y = this.oEvent.clientY;
+        // 计算元素的最终位置
+        this.left = this.endPos.x - this.offsetPos.x;
+        this.top = this.endPos.y - this.offsetPos.y;
+        // 限制范围
+        this.l = (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) - this.ele.offsetWidth;
+        this.t = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) - this.ele.offsetHeight;
+        this.left = this.left<0?0:this.left;
+        this.left = this.left>this.l?this.l:this.left;
+        this.top = this.top<0?0:this.top;
+        this.top = this.top>this.t?this.t:this.top;
+        
+        // 设置元素的最终位置
+        this.ele.style.left = this.left+"px";
+        this.ele.style.top = this.top+"px";
+    }
+    window.onload = function(){
+        var d1 = new Drag("div1");
+
+        var d2 = new DragWall("div2");
+    }
+</script>
+</body>
+</html>
